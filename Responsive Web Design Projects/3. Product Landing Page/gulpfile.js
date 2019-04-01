@@ -34,7 +34,7 @@ function buildCSS() {
 }
 
 function buildIMG() {
-  return src("src/img/*.jpg")
+  return src("src/img/*")
     .pipe(imagemin([
       imagemin.optipng({optimizationLevel: 7}),
       imagemin.jpegtran({progressive: true})
