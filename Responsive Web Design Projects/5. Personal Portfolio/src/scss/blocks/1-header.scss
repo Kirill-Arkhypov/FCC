@@ -1,0 +1,170 @@
+.header {
+  position: relative;
+  
+  min-height: 100vh;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+  url(https://wallpaperplay.com/walls/full/3/c/4/164624.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  
+  &__nav {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    
+    width: 100%;
+    height: 40px;
+
+    transition: 0.5s;
+
+    &--list {
+      height: 100%;
+      padding: 6px;
+    }
+
+    &--links {
+      display: flex;
+      justify-content: space-between;
+
+      width: 200px;
+      margin-left: auto;
+    }
+
+    &--link {
+      font-size: 1.2rem;
+
+      color: $bg;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &:active {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  &__text {
+    padding-top: 150px;
+    padding-left: 10px;
+
+    &--main {
+      font-family: "Poppins", sans-serif;
+      font-size: 4.2rem;
+      line-height: 4rem;
+
+      margin: 0;
+      
+      color: $bg;
+    }
+
+    &--small {
+      font-size: 1.3rem;
+
+      margin: 0;
+      margin-top: 20px;
+
+      color: $bg;
+
+      opacity: 0.8;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 42px;
+    height: 20px;
+
+    color: $bg;
+
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:active {
+      opacity: 0.3;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet-width) {
+  .header {
+
+    &__nav {
+      height: 45px;
+
+      &--list {
+        padding: 10px;
+      }
+
+      &--links {
+        width: 230px;
+      }
+
+      &--link {
+        font-size: 1.3rem;
+      }
+    }
+
+    &__text {
+      padding-top: 125px;
+      padding-left: 8%;
+
+      &--main {
+        font-size: 4.8rem;
+        line-height: 4.7rem;
+      }
+
+      &--small {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $desktop-width) {
+  .header {
+
+    &__nav {
+      height: 50px;
+
+      &--list {
+        padding: 13px;
+      }
+
+      &--links {
+        width: 270px;
+      }
+
+      &--link {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__text {
+    padding-top: 8%;
+    padding-left: 6%;
+
+      &--main {
+        font-size: 6rem;
+        line-height: 7rem;
+      }
+
+      &--small {
+        font-size: 1.5rem;
+
+        margin-top: 15px;
+      }
+    }
+  }
+}

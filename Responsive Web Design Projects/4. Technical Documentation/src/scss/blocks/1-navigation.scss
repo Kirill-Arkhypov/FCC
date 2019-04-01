@@ -1,0 +1,162 @@
+.navigation {
+
+  &__menu {
+    z-index: 1;
+
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+
+    background-color: rgba(40, 44, 52, 0.9);
+
+    transition: opacity 0.4s, visibility 0.4s;
+  }
+
+  &__header--img {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+  }
+
+  &-link {
+    text-align: center;
+    color: $color;
+
+    width: 75%;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: 21px;
+    padding: 10px;
+
+    background-color: $bg;
+    box-shadow: 0 2px 4px 0 rgba(10, 252, 240, 0.2), 
+                0 3px 8px 0 rgba(10, 252, 240, 0.19);
+
+    border: 1px solid;
+    border-radius: 2px;
+
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 0 2px 8px 0 rgba(10, 252, 240, 0.2), 
+                  0 4px 20px 0 rgba(10, 252, 240, 0.19);
+    }
+
+    &:active {
+      opacity: 0.6;
+    }
+  }
+}
+
+.closed {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media screen and (min-width: $tablet-width) {
+  
+  .closed {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navigation {
+
+    &__menu {
+      left: 0;
+
+      width: 250px;
+      height: 95vh;
+      max-height: 550px;
+      margin: 10px;
+
+      background-color: transparent;
+      border-radius: 5px;
+
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+   
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    &__header {
+      margin: 5px;
+      
+      &--img {
+        display: block;
+
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__list {
+      padding-bottom: 10px;
+      
+      overflow-y: auto;
+    }
+
+    &-link {
+      text-align: left;
+      font-size: 0.9rem;
+      color: #000;
+
+      width: 90%;
+      height: 40px;
+      margin-top: 15px;
+      padding-top: 7px;
+
+      background-color: #f2f2f2;
+      box-shadow: none;
+
+      border: 1px solid transparent;
+
+      transition: 0.3s;
+      
+      &:hover {
+        box-shadow: 0 2px 8px 0 rgba(0, 00, 0, 0.2), 
+                    0 4px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      &:active {
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $desktop-width) {
+  
+  .navigation {  
+
+    &__menu {
+      width: 300px;
+      max-height: 600px;
+    }
+
+    &-link {
+      font-size: 1rem;
+
+      margin-top: 18px;
+      padding: 8px;
+    }
+  }
+}

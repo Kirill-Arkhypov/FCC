@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wallet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" width="16px" href="https://png.pngtree.com/svg/20170414/wallet_111278.png" type="image/png">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Germania+One|Lora" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <header id="header" class="header">
+    
+    <div id="header__menu" class="header__menu">
+      <div class="wrapper">
+        <a class="header__logo" href="#header">
+          <img id="header-img" class="header__logo--img" width="44px" src="https://png.pngtree.com/svg/20170414/wallet_111278.png" alt="wallet-logo"/>
+          <p class="header__logo--text">Wallet</p>
+        </a>
+        <div class="header__btn" onclick="myFunction(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <nav id="nav-bar" class="closed">
+          <div class="header__nav">
+            <ul class="header__nav--list">
+              <li>
+                <a class="nav-link" href="#about">About us</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#features">Features</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#how">How it works</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#contacts">Contacts</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    
+    <section class="main">
+      <h1 class="main__heading">Handmade Leather Wallets</h1>
+      <a href="#contacts" class="main__button">write us</a>
+      <a href="#about" class="main__arrow"><i class="fas fa-angle-down fa-4x"></i></a>
+    </section>
+
+  </header>
+
+  <main>
+    <div class="wrapper">
+      <section id="about" class="about">
+        <div class="about__description">
+          <h3 class="about__heading">About us</h3>
+          <p class="about__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quae minima voluptatem mollitia culpa quam fugiat officiis ullam fuga, id, quia optio ratione commodi distinctio, veritatis ipsam debitis. Quo, deserunt! Lorem ipsum dolor sit amet, consectetur adipisicing elit.<span id="features"></span> Provident illo quo numquam nemo tempora fugiat dolor.</p>
+        </div>
+        <img class="about__img" src="https://static1.squarespace.com/static/54712b54e4b05ab9931e076c/54753ce9e4b0df69923744e6/555e7d28e4b0e613dfa15a7b/1432255784866/Wallet+Lg.jpg?format=500w" alt="wallet">
+      </section>
+    </div>
+
+    <section class="features">
+      <ul class="features__list wrapper">
+        <li class="features__item">
+          <i class="features__icon fab fa-envira fa-3x"></i>
+          <p class="features__text">Only natural materials<br> are used</p>
+        </li>
+        <li class="features__item">
+          <i class="features__icon fas fa-drafting-compass fa-3x"></i>
+          <p class="features__text">Handmade by<br> masters of leather</p>
+        </li>
+        <li class="features__item">
+          <i class="features__icon fas fa-sort-amount-up fa-3x"></i>
+          <p class="features__text">High quality product</p>
+        </li>
+        <li class="features__item">
+          <i class="features__icon fas fa-gift fa-3x"></i>
+          <p class="features__text">Comes in a gift box</p>
+        </li>
+        <li class="features__item">
+          <i class="features__icon far fa-clock fa-3x"></i>
+          <p class="features__text">Quick order making</p>
+        </li>
+        <li class="features__item">
+          <i class="features__icon fas fa-globe-americas fa-3x"></i>
+          <p class="features__text">Delivery to anywhere<br> in the world</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="how" class="how wrapper">
+      <h3 class="how__heading">Manufacturing process</h3>
+      <iframe id="video" class="how__video" width="560" height="315" src="https://www.youtube.com/embed/auyhZ6PW5rk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p class="how__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident reprehenderit repellat autem repellendus! Quaerat provident earum praesentium omnis quia autem, nostrum iusto rem facere cupiditate nihil, quod aperiam odio nesciunt.</p>
+    </section>
+
+    <hr class="delimiter">
+
+    <section id="contacts" class="contacts">
+      <form id="form" class="contacts__form" action="https://www.freecodecamp.com/email-submit">
+        <h1 class="contacts__heading">Contact Us!</h1>
+        <p class="contacts__text">Leave us your email and we will contact you within 15 minutes.</p>
+        <input id="email" class="contacts__input" type="email"  placeholder="enter your e-mail adress" required>
+        <input id="submit" class="contacts__submit" type="submit" value="write us"></input>
+      </form>
+      <iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1599.9963521154064!2d18.474389586647664!3d-34.356595259733645!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc22fcace03f67%3A0x35285cf1b77ca2e9!2z0JrQtdC50L8g0L7RhCDQk9GD0LQg0KXQvtC_!5e0!3m2!1sru!2sua!4v1553797517018" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__row wrapper">
+      <ul class="footer__social">
+        <li class="footer__item">
+          <a href="#" class="footer__link">
+          <i class="fab fa-facebook fa-3x"></i></a>
+        </li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">
+          <i class="fab fa-twitter fa-3x"></i></a>
+        </li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">
+          <i class="fab fa-instagram fa-3x"></i></a>
+        </li>
+      </ul>
+      <p class="footer__text">&copy; Created for <a class="footer__link--fcc" href="https://www.freecodecamp.org" target="_blank">Free Code Camp</a> 2019</p>
+    </div>
+  </footer>
+
+</body>
+
+  <script src="js/script.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+  
+</html>
+

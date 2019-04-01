@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Portfolio Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" width="16px" href="https://cdn4.iconfinder.com/data/icons/web-25/100/User_Profile-512.png" type="image/png">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=PT+Sans|Poppins:700" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+  <header id="welcome-section" class="header">
+
+    <nav id="navbar" class="header__nav">
+      <ul class="header__nav--list wrapper">
+        <div class="header__nav--links">
+          <li>
+            <a class="header__nav--link" href="#welcome-section">Home</a>
+          </li>
+          <li>
+            <a class="header__nav--link" href="#projects">Projects</a>
+          </li>
+          <li>
+            <a class="header__nav--link" href="#about">About</a>
+          </li>
+      </div>
+      </ul>
+    </nav>
+
+    <section class="header__text wrapper">
+      <h1 class="header__text--main">Personal<br>Poftfolio<br>Webpage</h1>
+      <p class="header__text--small">Kirill Arkhypov, a web developer</p>
+    </section>
+
+    <a href="#projects" class="header__arrow">
+      <i class="fas fa-angle-down fa-4x"></i>
+    </a>
+
+  </header>
+
+  <main>
+
+    <section id="projects" class="projects wrapper">
+      <h2 class="projects__main-header">Projects</h2>
+      <div class="projects__list">
+        <div class="projects__item">
+          <a class="projects__link" href="https://codepen.io/Kirill_Arkhypov/pen/PLVwQL" target="_blank">
+            <img src="img/preview-1.jpg" alt="Tribute Page" class="projects__preview">
+          </a>
+          <h3 class="projects__heading">Tribute Page</h3>
+          <p class="projects__text">Minimalist web page on pure<br> HTML and CSS</p>
+        </div>
+        <div class="projects__item">
+          <a class="project__link" href="https://codepen.io/Kirill_Arkhypov/pen/xBMbeW" target="_blank">
+            <img src="img/preview-2.jpg" alt="Survey Form" class="projects__preview">
+          </a>
+          <h3 class="projects__heading">Survey Form</h3>
+          <p class="projects__text">Responsive survey form with some decorative elements</p>
+        </div>
+        <div class="projects__item">
+          <a class="project__link" href="#" target="_blank">
+            <img src="img/preview-3.jpg" alt="Product Landing Page" class="projects__preview">
+          </a>
+          <h3 class="projects__heading">Product Landing Page</h3>
+          <p class="projects__text">Adaptive landing page of handmade leather wallets shop</p>
+        </div>
+        <div class="projects__item">
+          <a class="project__link" href="#" target="_blank">
+            <img src="img/preview-4.jpg" alt="Technical Documentation Page" class="projects__preview">
+          </a>
+          <h3 class="projects__heading">Technical Documentation</h3>
+          <p class="projects__text">JSX documentation page with fixed navbar</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="wrapper">
+        <h2 class="about__header">About me</h2>
+        <p class="about__text">Hello, I am Kirill, a web developer.</p>
+        <div class="about__links">
+          <div class="about__item">
+            <a class="about__link" href="https://www.freecodecamp.org/k.arkhypov" target="_blank">
+              <i class="fab fa-free-code-camp fa-4x"></i>
+            </a>
+          </div>
+          <div class="about__item">
+            <a class="about__link" href="https://codepen.io/Kirill_Arkhypov/" target="_blank">
+              <i class="fab fa-codepen fa-4x"></i>
+            </a>
+          </div>
+          <div class="about__item">
+            <a id="profile-link" class="about__link" href="https://github.com/karkhypov" target="_blank">
+              <i class="fab fa-github fa-4x"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrapper">
+      <p class="footer__text">&copy; Created for <a class="footer__link" href="https://www.freecodecamp.org" target="_blank">Free Code Camp</a> 2019</p>
+    </div>
+  </footer>
+
+</body>
+
+  <script src="js/script.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
+</html>
+

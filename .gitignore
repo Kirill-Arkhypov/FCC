@@ -1,0 +1,3 @@
+*.lnk
+**/dist/
+**/node_modules/

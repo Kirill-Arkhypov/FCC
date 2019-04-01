@@ -1,0 +1,71 @@
+.features {
+  height: 520px;
+
+  background: url(https://www.ooweeproducts.com/wp-content/uploads/2017/12/Oowee_199-1.jpg)
+  no-repeat center;
+  background-size: cover;
+
+  border: 1px solid transparent;
+  
+  .fa-envira,
+  .fa-drafting-compass,
+  .fa-sort-amount-up,
+  .fa-gift,
+  .fa-clock,
+  .fa-globe-americas {
+    color: $color;  
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: 90%;
+    margin-top: 20px;
+    padding: 0 15px;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    border-radius: 4px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    margin-right: 20px;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    color: #fff;
+    text-shadow: 2px 2px #000;
+  }
+}
+
+@media screen and (min-width: $tablet-width) {
+  .features {
+    height: 440px;
+
+    &__list {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    &__item {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (min-width: $desktop-width) {
+  br {
+    display: none;
+  }
+}

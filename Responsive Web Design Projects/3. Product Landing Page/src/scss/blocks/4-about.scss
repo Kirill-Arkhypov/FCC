@@ -1,0 +1,60 @@
+.about {
+  padding: 45px 0;
+
+  &__description {
+    color: #000;
+  }
+
+  &__heading {
+    position: relative;
+
+    text-align: center;
+    font-size: 2rem;
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 145%;
+      left: 10%;
+
+      width: 80%;
+      height: 2px;
+
+      background-color: $color;
+    }
+  }
+
+  &__text {
+    font-size: 1.2rem;
+
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__img {
+    display: none;
+  }
+}
+
+@media screen and (min-width: $tablet-width) {
+  .about {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__heading {
+      font-size: 3rem;
+
+      &::after {
+        top: 190%;
+      }
+    }
+
+    &__img {
+      display: block;
+      
+      max-width: 50%;
+      height: auto;
+    }
+  }
+}

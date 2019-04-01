@@ -1,0 +1,11 @@
+$color: #061634;
+$bg: #f2f2f2;
+$tablet-width: 768px;
+$desktop-width: 1150px;
+
+%reset {
+  margin: 0;
+  padding: 0;
+}
+
+// @extend %reset;

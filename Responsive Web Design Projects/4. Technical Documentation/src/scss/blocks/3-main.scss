@@ -1,0 +1,73 @@
+.main {
+  
+  &__header {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    margin-top: 22px;
+  }
+
+  &-section {
+    padding-top: 10px;
+  }
+
+  &__text {
+    font-size: 0.97rem;
+    line-height: 1.7rem;
+
+    margin-top: 25px;
+  }
+
+  &__first-line {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #6d6d6d;
+  }
+
+  pre {
+    color: $color;
+
+    background-color: $bg;
+  }
+
+  &__code {
+    font-family: "Inconsolata", Helvetica, monospace;
+  }
+
+  &__blockquote {
+    margin: 0;
+    padding: 20px 0;
+
+    background-color: rgba(255, 229, 100, 0.3);
+  }
+}
+
+@media screen and (min-width: 420px) {
+  br {
+    display: none;
+  }
+}
+
+@media screen and (min-width: $tablet-width) {
+  .main {
+    margin-left: 240px;
+
+    pre {
+      border-radius: 15px 0 0 15px;
+    }
+
+    &__blockquote {
+      border-left: 9px solid #ffe564;
+    }
+  }
+}
+
+@media screen and (min-width: $desktop-width) {
+  .main {
+    margin-left: 305px;
+
+    pre {
+      border-radius: 15px;
+    }
+  }
+}

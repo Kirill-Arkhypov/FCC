@@ -1,0 +1,118 @@
+.about {
+  height: 82vh;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+  url(https://www.indianic.com/wp-content/uploads/2016/07/webdevelopment-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-attachment: fixed;
+  background-size: cover;
+
+  color: $bg;
+
+  &__header {
+    display: block;
+
+    font-size: 2.2rem;
+    text-align: center;
+    
+    margin: 0;
+    padding: 0;
+    padding-top: 75px;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    text-align: center;
+
+    margin-top: 30px;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    width: 55%;
+    margin: 0 auto;
+    margin-top: 70px;
+  }
+
+  &__item {
+    width: 90px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    margin-left: 10px;
+
+    color: $bg;
+    opacity: 0.85;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:active {
+      opacity: 0.3;
+    }
+
+    .fa-free-code-camp:hover {
+      color: #006400;
+    }
+
+    .fa-codepen:hover {
+      color: #131418;
+    }
+
+    .fa-github:hover {
+      color: #000;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet-width) {
+  .about {
+
+    &__header {
+      font-size: 2.4rem;
+
+      padding-top: 100px;
+    }
+
+    &__links {
+      width: 60%;
+      margin-top: 100px;
+    }
+
+    &__item {
+      width: 65px;
+    }
+
+    &__link {
+      margin-left: 0;
+    }
+  }
+}
+
+@media screen and (min-width: $desktop-width) {
+  .about {
+
+    &__header {
+      font-size: 2.8rem;
+
+      padding-top: 115px;
+    }
+
+    &__text {
+      font-size: 1.6rem;
+
+      margin-top: 35px;
+    }
+
+    &__links {
+      margin-top: 90px;
+    }
+  }
+}

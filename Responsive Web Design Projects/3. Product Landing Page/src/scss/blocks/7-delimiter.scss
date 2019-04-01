@@ -1,0 +1,27 @@
+.delimiter {
+  height: 20px;
+
+  border: none;
+  background-repeat: repeat-x;
+  background-position: center;
+  background-image: url("https://www.shareicon.net/data/512x512/2015/10/21/659453_stitch_512x512.png");
+  background-size: auto 75px;
+
+  background-color: $color;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media(min-width: $tablet-width) {
+  .delimiter {
+    height: 25px;
+  }
+}
+
+@media(min-width: $desktop-width) {
+  .delimiter {
+    height: 30px;
+    
+    background-size: auto 85px;
+  }
+}

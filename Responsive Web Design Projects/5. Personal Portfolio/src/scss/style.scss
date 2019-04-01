@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Poppins:700');
+@import "variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  position: relative; 
+
+  font-family: "PT Sans", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  min-width: 320px;
+  @extend %reset;
+
+  background-color: $bg;
+
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.wrapper {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+
+// @media screen and (min-width: $tablet-width)  {
+//   .wrapper {
+//     width: 85%;
+//   }
+// }
+
+// @media screen and (min-width: $desktop-width)  {
+//   .wrapper {
+//     width: 85%;
+//   }
+// }
