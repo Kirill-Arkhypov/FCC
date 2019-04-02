@@ -3,8 +3,7 @@
   
   height: 100vh;
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-  url(https://ksr-ugc.imgix.net/assets/015/881/030/57afab39c494f097378ae4b1d1b8dad8_original.JPG?ixlib=rb-1.1.0&crop=faces&w=1552&h=873&fit=crop&v=1489811758&auto=format&frame=1&q=92&s=494567980debd9b9e8d110a0c96f0163);
+  background-image: url(/img/main-bg.jpg), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
