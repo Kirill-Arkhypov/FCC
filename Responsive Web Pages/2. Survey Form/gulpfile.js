@@ -25,7 +25,7 @@ function buildCSS() {
       }, '')))
       .pipe(sass())
       .pipe(postcss([
-        autoprefix({ browsers: ['last 10 versions']}),
+        autoprefix({ browsers: ['last 3 versions']}),
         cssnano()]))
       .pipe(dest('dist/css'));
   })
