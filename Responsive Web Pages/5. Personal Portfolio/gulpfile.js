@@ -4,7 +4,7 @@ const {src, dest, watch, series, parallel} = require('gulp'),
   server = require('browser-sync'),
   sass = require('gulp-sass'),
   postcss = require('gulp-postcss'),
-  autoprefix = require('autoprefixer'),
+  autoprefixer = require('autoprefixer'),
   cssnano = require('cssnano'),
   plumber = require('gulp-plumber'),
   imagemin = require('gulp-imagemin'),
@@ -27,7 +27,10 @@ function buildCSS() {
       }, '')))
       .pipe(sass())
       .pipe(postcss([
-        autoprefix({ browsers: ['last 3 versions']}),
+        autoprefixer({ 
+          overrideBrowsersList: ["last 3 versions",
+                                 "> 1%",
+                                 "IE 10"]}),
         cssnano()]))
       .pipe(dest('dist/css'));
   })
