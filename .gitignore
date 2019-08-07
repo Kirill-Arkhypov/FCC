@@ -1,9 +1,9 @@
 .DS_Store
+*.log
 *.lnk
 **/dist/
 **/node_modules/
 npm-debug.log
-*.log
 
 #IntelliJ
 *.iml
