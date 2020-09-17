@@ -8,17 +8,16 @@ class App extends React.Component {
     author: '',
   };
 
-  async fetchQuote() {
+  fetchQuote = async () => {
     const response = await fetch(
       'https://quote-garden.herokuapp.com/api/v2/quotes/random'
-    );
-    const parsed = await response.json();
+    ).then((res) => res.json());
 
     this.setState({
-      text: parsed.quote.quoteText,
-      author: parsed.quote.quoteAuthor,
+      text: response.quote.quoteText,
+      author: response.quote.quoteAuthor,
     });
-  }
+  };
 
   componentDidMount() {
     this.fetchQuote();
@@ -32,7 +31,7 @@ class App extends React.Component {
         <a id='tweet-quote' href='twitter.com/intent/tweet'>
           Tweet Quote
         </a>
-        <button id='new-quote' onClick={this.fetchQuote.bind(this)}>
+        <button id='new-quote' onClick={this.fetchQuote}>
           Get a Quote!
         </button>
       </div>
