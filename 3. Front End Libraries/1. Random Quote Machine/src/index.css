@@ -1,1 +1,17 @@
+:root {
+  background-color: #f2f2f2;
+}
 
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#quote-box {
+  width: 350px;
+  padding: 15px;
+  background-color: red;
+  border-radius: 5px;
+}
