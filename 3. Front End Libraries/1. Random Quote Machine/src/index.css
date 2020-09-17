@@ -1,5 +1,9 @@
 :root {
-  background-color: #f2f2f2;
+  --primary-color: #1d3557;
+  --secondary-color: #f1faee;
+  --alert-color: #e63946;
+
+  background-color: var(--primary-color);
 }
 
 #root {
@@ -10,8 +14,55 @@
 }
 
 #quote-box {
-  width: 350px;
-  padding: 15px;
-  background-color: red;
+  max-width: 700px;
+  padding: 25px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.596);
+}
+
+#text {
+  font-size: 1.6rem;
+}
+
+#author {
+  font-size: 1.2rem;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#new-quote {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  width: 120px;
+  height: 35px;
+  margin-left: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.596);
+}
+
+#new-quote:hover {
+  background-color: var(--alert-color);
+}
+
+#new-quote:active {
+  transform: scale(0.95);
+}
+
+#tweet-quote:hover img {
+  opacity: 0.5;
+}
+
+#tweet-quote:active img {
+  opacity: 0.3;
 }

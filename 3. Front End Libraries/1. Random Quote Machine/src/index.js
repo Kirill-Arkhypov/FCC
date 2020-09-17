@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import twitter from './twitter-icon.png';
 import './index.css';
 
 class App extends React.Component {
@@ -26,14 +27,20 @@ class App extends React.Component {
   render() {
     return (
       <div id='quote-box'>
-        <p id='text'>{this.state.text}</p>
-        <p id='author'>{this.state.author}</p>
-        <a id='tweet-quote' href='twitter.com/intent/tweet'>
-          Tweet Quote
-        </a>
-        <button id='new-quote' onClick={this.fetchQuote}>
-          Get a Quote!
-        </button>
+        <q id='text'>
+          <i> {this.state.text} </i>
+        </q>
+        <p id='author'>&ndash; {this.state.author}</p>
+        <div id='buttons'>
+          <a id='tweet-quote' href='twitter.com/intent/tweet' target='_blank'>
+            <abbr title='share on Twitter'>
+              <img src={twitter} alt='share on Twitter' />
+            </abbr>
+          </a>
+          <button id='new-quote' onClick={this.fetchQuote}>
+            Get a Quote!
+          </button>
+        </div>
       </div>
     );
   }
