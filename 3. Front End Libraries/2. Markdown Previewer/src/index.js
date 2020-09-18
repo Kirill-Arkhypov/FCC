@@ -6,16 +6,16 @@ import placeholder from './placeholder.js';
 import './index.css';
 
 function App() {
-  const [input, parsedInput] = useState(placeholder);
+  const [output, parse] = useState(placeholder);
 
   return (
     <div id='container'>
-      <textarea id='editor' onChange={(e) => parsedInput(e.target.value)}>
-        {input}
+      <textarea id='editor' onChange={(e) => parse(e.target.value)}>
+        {output}
       </textarea>
       <div
         id='preview'
-        dangerouslySetInnerHTML={{ __html: marked(input, { breaks: true }) }}
+        dangerouslySetInnerHTML={{ __html: marked(output, { breaks: true }) }}
       ></div>
     </div>
   );
