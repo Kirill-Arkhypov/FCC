@@ -10,13 +10,13 @@ class App extends React.Component {
   };
 
   fetchQuote = async () => {
-    const response = await fetch(
+    const { quote } = await fetch(
       'https://quote-garden.herokuapp.com/api/v2/quotes/random'
     ).then((res) => res.json());
 
     this.setState({
-      text: response.quote.quoteText,
-      author: response.quote.quoteAuthor,
+      text: quote.quoteText,
+      author: quote.quoteAuthor,
     });
   };
 
