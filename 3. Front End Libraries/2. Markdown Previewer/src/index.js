@@ -9,7 +9,7 @@ function App() {
   const [text, parse] = useState(placeholder);
 
   return (
-    <div id='container'>
+    <div>
       <h1>Markdown Previewer</h1>
       <div className='row'>
         <div className='column'>
