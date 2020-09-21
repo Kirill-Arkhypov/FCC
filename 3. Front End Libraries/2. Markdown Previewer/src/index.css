@@ -28,7 +28,7 @@ h3 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: calc(100vh - 68px);
 }
 
 .column:first-child {
@@ -37,12 +37,12 @@ h3 {
 
 #editor,
 #preview {
+  height: 100%;
   color: var(--primary-color);
   background-color: var(--secondary-color);
 }
 
 #editor {
-  height: 100%;
   resize: none;
   border: none;
 }
