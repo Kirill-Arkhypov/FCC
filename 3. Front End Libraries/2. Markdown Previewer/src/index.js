@@ -6,7 +6,7 @@ import placeholder from './placeholder.js';
 import './index.css';
 
 function App() {
-  const [text, parse] = useState(placeholder);
+  const [text, changeText] = useState(placeholder);
 
   return (
     <div>
@@ -17,7 +17,7 @@ function App() {
           <textarea
             id='editor'
             value={text}
-            onChange={(e) => parse(e.target.value)}
+            onChange={(e) => changeText(e.target.value)}
           >
             {text}
           </textarea>
