@@ -6,17 +6,32 @@ import placeholder from './placeholder.js';
 import './index.css';
 
 function App() {
-  const [output, parse] = useState(placeholder);
+  const [text, parse] = useState(placeholder);
 
   return (
     <div id='container'>
-      <textarea id='editor' onChange={(e) => parse(e.target.value)}>
-        {output}
-      </textarea>
-      <div
-        id='preview'
-        dangerouslySetInnerHTML={{ __html: marked(output, { breaks: true }) }}
-      ></div>
+      <h1>Markdown Previewer</h1>
+      <div className='row'>
+        <div className='column'>
+          <h3>Enter your markdown here</h3>
+          <textarea
+            id='editor'
+            value={text}
+            onChange={(e) => parse(e.target.value)}
+          >
+            {text}
+          </textarea>
+        </div>
+        <div className='column'>
+          <h3>Result</h3>
+          <div
+            id='preview'
+            dangerouslySetInnerHTML={{
+              __html: marked(text, { breaks: true }),
+            }}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 }
