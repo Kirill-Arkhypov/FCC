@@ -18,9 +18,7 @@ function App() {
             id='editor'
             value={text}
             onChange={(e) => changeText(e.target.value)}
-          >
-            {text}
-          </textarea>
+          />
         </div>
         <div className='column'>
           <h3>Result</h3>
@@ -29,7 +27,7 @@ function App() {
             dangerouslySetInnerHTML={{
               __html: marked(text, { breaks: true }),
             }}
-          ></div>
+          />
         </div>
       </div>
     </div>
