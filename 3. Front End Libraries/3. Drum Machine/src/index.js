@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import soundBank from './soundBank.js';
@@ -8,26 +8,45 @@ import './index.css';
 const App = () => {
   const [clipName, setClipName] = useState('Drum Machine');
 
-  const showName = (e) => {
-    setClipName(e);
+  const displayClipName = (clipName) => {
+    setClipName(clipName);
   };
+
+  useEffect(() => {
+    const onKeyPress = (e) => {
+      const audioId = e.key.toUpperCase();
+      const audio = document.getElementById(audioId);
+      const clipName = audio.parentNode.id;
+
+      if (audio) {
+        audio.play();
+        displayClipName(clipName);
+      }
+    };
+
+    document.addEventListener('keypress', onKeyPress);
+
+    return () => {
+      document.removeEventListener('keypress', onKeyPress);
+    };
+  }, []);
 
   return (
     <div id='drum-machine'>
       <div id='display'>{clipName}</div>
-      {soundBank.map((e) => {
-        const audio = new Audio(e.clip);
-        return (
-          <DrumPad
-            key={e.name}
-            button={e.button}
-            name={e.name}
-            clip={e.clip}
-            audio={audio}
-            handleClick={showName}
-          />
-        );
-      })}
+      <div className='container'>
+        {soundBank.map(({ name, button, clip }) => {
+          return (
+            <DrumPad
+              key={name}
+              button={button}
+              clipName={name}
+              clip={clip}
+              displayClipName={displayClipName}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

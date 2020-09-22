@@ -1,30 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 
-const DrumPad = ({ button, name, clip, handleClick, audio, onKeyPress }) => {
-  const onClick = (e) => {
-    audio.play();
-    handleClick(e);
+const DrumPad = ({ button, clipName, clip, displayClipName }) => {
+  const audio = useRef(null);
+
+  const handleClick = () => {
+    audio.current.play();
+    displayClipName(clipName);
   };
-
-  onKeyPress = (e) => {
-    if (e.key === button.toLowerCase()) {
-      onClick(name);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keypress', onKeyPress);
-
-    return () => {
-      document.removeEventListener('keypress', onKeyPress);
-    };
-  });
 
   return (
-    <figure className='drum-pad'>
-      <button onClick={() => onClick(name)}>{button}</button>
-      <audio src={clip}></audio>
-    </figure>
+    <div id={clipName} className='drum-pad' onClick={() => handleClick()}>
+      {button}
+      <audio ref={audio} id={button} className='clip' src={clip} />
+    </div>
   );
 };
 
