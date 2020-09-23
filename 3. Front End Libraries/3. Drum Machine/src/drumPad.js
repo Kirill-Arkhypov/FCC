@@ -4,6 +4,7 @@ const DrumPad = ({ button, clipName, clip, displayClipName }) => {
   const audio = useRef(null);
 
   const handleClick = () => {
+    audio.current.currentTime = 0;
     audio.current.play();
     displayClipName(clipName);
   };

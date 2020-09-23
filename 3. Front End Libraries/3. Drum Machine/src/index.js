@@ -5,6 +5,9 @@ import soundBank from './soundBank.js';
 import DrumPad from './drumPad.js';
 import './index.css';
 
+const colors = ['#9b5de5', '#f15bb5', '#fee440', '#00bbf9', '#00f5d4'];
+const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+
 const App = () => {
   const [clipName, setClipName] = useState('Drum Machine');
 
@@ -16,9 +19,21 @@ const App = () => {
     const onKeyPress = (e) => {
       const audioId = e.key.toUpperCase();
       const audio = document.getElementById(audioId);
-      const clipName = audio.parentNode.id;
 
       if (audio) {
+        const clipName = audio.parentNode.id;
+        const drumPad = audio.parentNode;
+
+        // drumPad.style.color = '#000';
+        drumPad.style.background = randomColor();
+        drumPad.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          // drumPad.style.color = '#fff';
+          drumPad.style.background = '#000';
+          drumPad.style.transform = 'scale(1)';
+        }, 150);
+
+        audio.currentTime = 0;
         audio.play();
         displayClipName(clipName);
       }
