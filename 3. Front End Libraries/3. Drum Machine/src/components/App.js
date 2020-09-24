@@ -6,8 +6,6 @@ import randomColor from '../assets/randomColor.js';
 import Display from './Display.js';
 import DrumPad from './DrumPad.js';
 
-import '../index.css';
-
 const App = () => {
   const [clipName, setClipName] = useState('Drum Machine');
 
