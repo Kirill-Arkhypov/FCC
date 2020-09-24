@@ -1,9 +1,12 @@
 :root {
+  --primary-color: #2b2d42;
+  --secondary-color: #faf9f9;
+  --tertiary-color: #e63946;
+
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #000;
 }
 
 * {
@@ -11,10 +14,10 @@
 }
 
 #drum-machine {
-  background-color: red;
   padding: 10px;
+  background-color: var(--primary-color);
   border-radius: 10px;
-  background-color: teal;
+  box-shadow: 1px 1px 10px var(--primary-color);
 }
 
 .container {
@@ -26,12 +29,11 @@
 #display {
   font-size: 2rem;
   text-align: center;
-  color: #fff;
-  background-color: #000;
-  margin: 0 auto;
+  width: 100%;
   margin-bottom: 2px;
-  width: 458px;
   padding: 5px;
+  color: var(--secondary-color);
+  background-color: var(--tertiary-color);
   border-radius: 5px;
 }
 
@@ -39,17 +41,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 3rem;
   width: 150px;
   height: 150px;
   margin: 2px;
   cursor: pointer;
-  color: #000;
-  background-color: #fffffc;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 5px;
-  opacity: 0.3;
-}
-
-.active {
-  transform: scale(0.98);
 }
