@@ -32,7 +32,8 @@
   font-size: 2rem;
   text-align: center;
   width: 100%;
-  margin-bottom: 2px;
+  margin: 2px;
+  margin-top: 0;
   padding: 5px;
   color: var(--secondary-color);
   background-color: var(--tertiary-color);
