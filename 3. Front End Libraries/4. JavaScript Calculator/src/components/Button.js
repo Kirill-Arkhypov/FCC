@@ -1,12 +1,8 @@
 import React from 'react';
 
 const Button = ({ id, value, onClick }) => {
-  const handleClick = (value) => {
-    onClick(value);
-  };
-
   return (
-    <button id={id} onClick={() => handleClick(value)}>
+    <button id={id} onClick={() => onClick(value)}>
       {value}
     </button>
   );
