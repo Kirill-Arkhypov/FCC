@@ -14,6 +14,10 @@ const App = () => {
   const [displayValue, setDisplayValue] = useState(currentOperand);
   const [displayExpression, setDisplayExpression] = useState('');
 
+  if (displayExpression.length > 28) {
+    setDisplayExpression('«' + displayExpression.slice(-27));
+  }
+
   const onInput = (value) => {
     if (value === 'C') {
       setCurrentOperand('0');
@@ -65,9 +69,11 @@ const App = () => {
         setPreviousOperand(result);
         setCurrentOperand('');
         setOperator(value);
+
         setDisplayExpression(
           displayExpression + ' ' + currentOperand + ' ' + value
         );
+
         return;
       }
 
