@@ -94,12 +94,10 @@ button:active {
 
 #equals {
   grid-area: equals;
-  height: auto;
 }
 
 #add {
   grid-area: add;
-  height: auto;
 }
 
 #subtract {
