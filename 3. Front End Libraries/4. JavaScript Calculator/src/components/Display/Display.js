@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './display.css';
+
 const Display = ({ expression, value }) => {
   let displayValue = <div id='value'>{value}</div>;
 

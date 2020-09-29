@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import buttons from '../assets/buttons';
 import compute from '../assets/computationalLogic';
 
-import Display from './Display';
-import Button from './Button';
+import Display from './Display/Display';
+import Button from './Button/Button';
 
 const App = () => {
   const [currentOperand, setCurrentOperand] = useState('0');
