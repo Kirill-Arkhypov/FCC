@@ -41,30 +41,33 @@ const App = () => {
     }
 
     if (value === '+' || value === '-' || value === '*' || value === '/') {
-      if (value === operator) {
+      if (!currentOperand && operator) {
+        if (operator !== '-' && value === '-') {
+          displayValue.includes('-')
+            ? setDisplayValue(displayValue.slice(1))
+            : setDisplayValue(value + displayValue);
+          return;
+        }
+
         setOperator(value);
-        setDisplayExpression((currentOperand || displayValue) + ' ' + value);
+        setDisplayExpression(displayExpression.slice(0, -2) + ' ' + value);
         return;
       }
 
-      if (operator && previousOperand && currentOperand) {
-        setDisplayValue(
-          compute(
-            parseFloat(currentOperand || displayValue),
-            parseFloat(previousOperand),
-            operator
-          )
+      if ((currentOperand || displayValue) && previousOperand && operator) {
+        const result = compute(
+          parseFloat(displayValue),
+          parseFloat(previousOperand),
+          operator
         );
+
+        setDisplayValue(result);
+        setPreviousOperand(result);
         setCurrentOperand('');
         setOperator(value);
-        setDisplayExpression(displayExpression + currentOperand + ' ' + value);
-        return;
-      }
-
-      if (operator && value === '-') {
-        displayValue.includes('-')
-          ? setDisplayValue(displayValue.slice(1))
-          : setDisplayValue(value + displayValue);
+        setDisplayExpression(
+          displayExpression + ' ' + currentOperand + ' ' + value
+        );
         return;
       }
 
