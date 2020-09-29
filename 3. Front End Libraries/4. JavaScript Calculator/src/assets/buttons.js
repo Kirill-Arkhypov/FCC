@@ -4,6 +4,10 @@ const buttons = [
     value: 'C',
   },
   {
+    id: 'delete',
+    value: '←',
+  },
+  {
     id: 'zero',
     value: '0',
   },
@@ -66,6 +70,10 @@ const buttons = [
   {
     id: 'divide',
     value: '/',
+  },
+  {
+    id: 'plus-minus',
+    value: '±',
   },
 ];
 

@@ -1,6 +1,9 @@
 const compute = (current, previous, operator) => {
   let result;
 
+  current = parseFloat(current);
+  previous = parseFloat(previous);
+
   switch (operator) {
     case '+':
       result = previous + current;

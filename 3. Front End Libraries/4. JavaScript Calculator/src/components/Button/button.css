@@ -1,20 +1,18 @@
 #buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 60px);
+  grid-template-rows: repeat(5, 60px);
   gap: 4px;
   grid-template-areas:
-    'clear divide multiply subtract'
-    'seven eight nine add'
-    'four five six add'
-    'one two three equals'
+    'clear delete plus-minus divide'
+    'seven eight nine multiply'
+    'four five six subtract'
+    'one two three add'
     'zero zero decimal equals';
 }
 
 button {
   font-size: 1.5rem;
-  width: 60px;
-  height: 60px;
   color: var(--secondary-color);
   background-color: var(--primary-color);
   border-radius: 5px;
@@ -83,9 +81,15 @@ button:active {
 #add,
 #subtract,
 #divide,
-#multiply {
+#multiply,
+#delete,
+#plus-minus {
   color: var(--primary-color);
   background-color: var(--tertiary-color);
+}
+
+#delete {
+  grid-area: delete;
 }
 
 #equals {
@@ -108,4 +112,8 @@ button:active {
 
 #multiply {
   grid-area: multiply;
+}
+
+#plus-minus {
+  grid-area: plus-minus;
 }

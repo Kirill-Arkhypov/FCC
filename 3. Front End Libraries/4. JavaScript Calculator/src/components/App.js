@@ -18,72 +18,73 @@ const App = () => {
     setDisplayExpression('«' + displayExpression.slice(-27));
   }
 
-  const onInput = (value) => {
-    if (value === 'C') {
-      setCurrentOperand('0');
-      setPreviousOperand('');
-      setOperator('');
-      setDisplayValue('0');
-      setDisplayExpression('');
+  function reset() {
+    setCurrentOperand('0');
+    setPreviousOperand('');
+    setOperator('');
+    setDisplayValue('0');
+    setDisplayExpression('');
+  }
+
+  function equals() {
+    if (!operator) return;
+    setDisplayValue(
+      compute(currentOperand || displayValue, previousOperand, operator)
+    );
+    setPreviousOperand(currentOperand || previousOperand);
+    setDisplayExpression('');
+    setCurrentOperand('');
+    setOperator('');
+  }
+
+  function backSpace() {
+    setDisplayValue(displayValue.slice(0, -1) || '0');
+    if (currentOperand) {
+      setCurrentOperand(currentOperand.slice(0, -1) || '0');
+    }
+  }
+
+  function plusMinus() {
+    if (displayValue === '0') return;
+    displayValue.includes('-')
+      ? setDisplayValue(displayValue.slice(1))
+      : setDisplayValue('-' + displayValue);
+    if (currentOperand) {
+      currentOperand.includes('-')
+        ? setCurrentOperand(currentOperand.slice(1))
+        : setCurrentOperand('-' + currentOperand);
+    }
+  }
+
+  function handleOperation(value) {
+    if (!currentOperand && operator) {
+      setOperator(value);
+      setDisplayExpression(displayExpression.slice(0, -2) + ' ' + value);
       return;
     }
 
-    if (value === '=') {
-      if (!operator) return;
-      setDisplayValue(
-        compute(
-          parseFloat(currentOperand || displayValue),
-          parseFloat(previousOperand),
-          operator
-        )
-      );
-      setPreviousOperand(currentOperand || previousOperand);
-      setDisplayExpression('');
-      setCurrentOperand('');
-      setOperator('');
-      return;
-    }
+    if ((currentOperand || displayValue) && previousOperand && operator) {
+      const result = compute(displayValue, previousOperand, operator);
 
-    if (value === '+' || value === '-' || value === '*' || value === '/') {
-      if (!currentOperand && operator) {
-        if (operator !== '-' && value === '-') {
-          displayValue.includes('-')
-            ? setDisplayValue(displayValue.slice(1))
-            : setDisplayValue(value + displayValue);
-          return;
-        }
-
-        setOperator(value);
-        setDisplayExpression(displayExpression.slice(0, -2) + ' ' + value);
-        return;
-      }
-
-      if ((currentOperand || displayValue) && previousOperand && operator) {
-        const result = compute(
-          parseFloat(displayValue),
-          parseFloat(previousOperand),
-          operator
-        );
-
-        setDisplayValue(result);
-        setPreviousOperand(result);
-        setCurrentOperand('');
-        setOperator(value);
-
-        setDisplayExpression(
-          displayExpression + ' ' + currentOperand + ' ' + value
-        );
-
-        return;
-      }
-
-      setPreviousOperand(currentOperand || displayValue);
-      setDisplayExpression((currentOperand || displayValue) + ' ' + value);
+      setDisplayValue(result);
+      setPreviousOperand(result);
       setCurrentOperand('');
       setOperator(value);
+
+      setDisplayExpression(
+        displayExpression + ' ' + currentOperand + ' ' + value
+      );
+
       return;
     }
 
+    setPreviousOperand(currentOperand || displayValue);
+    setDisplayExpression((currentOperand || displayValue) + ' ' + value);
+    setCurrentOperand('');
+    setOperator(value);
+  }
+
+  function handleInput(value) {
     if (displayValue === '0' && value !== '.') {
       setCurrentOperand(value);
       setDisplayValue(value);
@@ -101,7 +102,37 @@ const App = () => {
     if (currentOperand.length < 12) {
       setCurrentOperand(currentOperand + value);
       setDisplayValue(currentOperand + value);
-      return;
+    }
+  }
+
+  const onInput = (value) => {
+    switch (value) {
+      case 'C':
+        reset();
+        break;
+
+      case '=':
+        equals();
+        break;
+
+      case '←':
+        backSpace();
+        break;
+
+      case '±':
+        plusMinus();
+        break;
+
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        handleOperation(value);
+        break;
+
+      default:
+        handleInput(value);
+        return;
     }
   };
 
