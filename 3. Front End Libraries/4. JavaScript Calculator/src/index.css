@@ -22,4 +22,5 @@
   padding: 10px;
   border-radius: 10px;
   background-color: var(--fourth-color);
+  box-shadow: 1px 1px 8px black;
 }
