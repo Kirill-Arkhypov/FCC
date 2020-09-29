@@ -70,7 +70,6 @@ const App = () => {
       setPreviousOperand(result);
       setCurrentOperand('');
       setOperator(value);
-
       setDisplayExpression(
         displayExpression + ' ' + currentOperand + ' ' + value
       );
