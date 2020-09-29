@@ -22,7 +22,7 @@ const compute = (current, previous, operator) => {
       return;
   }
 
-  result = Math.round(1000000000000000 * result) / 1000000000000000;
+  result = Math.round(1e19 * result) / 1e19;
   return result.toString();
 };
 
