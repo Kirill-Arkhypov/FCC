@@ -37,7 +37,6 @@ button:active {
 }
 
 #zero {
-  width: auto;
   grid-area: zero;
 }
 
@@ -88,10 +87,6 @@ button:active {
   background-color: var(--tertiary-color);
 }
 
-#delete {
-  grid-area: delete;
-}
-
 #equals {
   grid-area: equals;
 }
@@ -110,6 +105,10 @@ button:active {
 
 #multiply {
   grid-area: multiply;
+}
+
+#delete {
+  grid-area: delete;
 }
 
 #plus-minus {
