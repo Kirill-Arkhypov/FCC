@@ -1,41 +1,99 @@
 import React, { useState } from 'react';
 
-import buttons from '../assets/buttons.js';
+import buttons from '../assets/buttons';
+import compute from '../assets/computationalLogic';
 
 import Display from './Display.js';
 import Button from './Button.js';
 
 const App = () => {
-  const [displayValue, setDisplayValue] = useState('0');
+  const [currentOperand, setCurrentOperand] = useState('0');
+  const [previousOperand, setPreviousOperand] = useState('');
+  const [operator, setOperator] = useState('');
+
+  const [displayValue, setDisplayValue] = useState(currentOperand);
   const [displayExpression, setDisplayExpression] = useState('');
 
   const onInput = (value) => {
     if (value === 'C') {
+      setCurrentOperand('0');
+      setPreviousOperand('');
+      setOperator('');
       setDisplayValue('0');
       setDisplayExpression('');
       return;
     }
 
     if (value === '=') {
-      setDisplayValue(eval(displayExpression + displayValue));
+      if (!operator) return;
+      setDisplayValue(
+        compute(
+          parseFloat(currentOperand || displayValue),
+          parseFloat(previousOperand),
+          operator
+        )
+      );
+      setPreviousOperand(currentOperand || previousOperand);
       setDisplayExpression('');
+      setCurrentOperand('');
+      setOperator('');
       return;
     }
 
     if (value === '+' || value === '-' || value === '*' || value === '/') {
-      setDisplayExpression(displayExpression + displayValue + value);
-      setDisplayValue('0');
+      if (value === operator) {
+        setOperator(value);
+        setDisplayExpression((currentOperand || displayValue) + ' ' + value);
+        return;
+      }
+
+      if (operator && previousOperand && currentOperand) {
+        setDisplayValue(
+          compute(
+            parseFloat(currentOperand || displayValue),
+            parseFloat(previousOperand),
+            operator
+          )
+        );
+        setCurrentOperand('');
+        setOperator(value);
+        setDisplayExpression(displayExpression + currentOperand + ' ' + value);
+        return;
+      }
+
+      if (operator && value === '-') {
+        displayValue.includes('-')
+          ? setDisplayValue(displayValue.slice(1))
+          : setDisplayValue(value + displayValue);
+        return;
+      }
+
+      setPreviousOperand(currentOperand || displayValue);
+      setDisplayExpression((currentOperand || displayValue) + ' ' + value);
+      setCurrentOperand('');
+      setOperator(value);
       return;
     }
 
     if (displayValue === '0' && value !== '.') {
+      setCurrentOperand(value);
       setDisplayValue(value);
+      return;
+    }
+
+    if (currentOperand === '' && value === '.') {
+      setCurrentOperand('0.');
+      setDisplayValue('0.');
       return;
     }
 
     if (value === '.' && displayValue.includes('.')) return;
 
-    setDisplayValue(displayValue + value);
+    if (currentOperand.length < 12) {
+      setCurrentOperand(currentOperand + value);
+      setDisplayValue(currentOperand + value);
+      return;
+    }
   };
 
   return (

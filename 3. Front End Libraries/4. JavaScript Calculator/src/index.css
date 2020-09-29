@@ -21,16 +21,21 @@
 #display {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+  font-size: 2.5rem;
+  height: 64px;
   margin-bottom: 10px;
   padding: 0 5px;
   background-color: #fff;
   color: #000;
   border-radius: 5px;
+}
 
-  width: 252px;
-  overflow: hidden;
+.reduced-display-font {
+  font-size: 1.5rem;
+}
+
+.highly-reduced-display-font {
+  font-size: 1.3rem;
 }
 
 #expression,
@@ -41,11 +46,12 @@
 #expression {
   font-size: 1.1rem;
   height: 17px;
-  opacity: 0.8;
+  margin-top: 2px;
+  opacity: 0.7;
 }
 
 #value {
-  font-size: 2.5rem;
+  line-height: 44px;
 }
 
 #buttons {
@@ -74,6 +80,10 @@ button {
 
 button:hover {
   opacity: 0.7;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 #clear {
