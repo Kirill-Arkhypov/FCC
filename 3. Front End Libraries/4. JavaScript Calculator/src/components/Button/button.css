@@ -15,8 +15,8 @@ button {
   font-size: 1.5rem;
   width: 60px;
   height: 60px;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
@@ -84,6 +84,7 @@ button:active {
 #subtract,
 #divide,
 #multiply {
+  color: var(--primary-color);
   background-color: var(--tertiary-color);
 }
 
