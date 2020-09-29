@@ -1,24 +1,24 @@
 const compute = (current, previous, operator) => {
   let result;
 
-  current = parseFloat(current);
-  previous = parseFloat(previous);
+  const x = parseFloat(previous);
+  const y = parseFloat(current);
 
   switch (operator) {
     case '+':
-      result = previous + current;
+      result = x + y;
       break;
 
     case '-':
-      result = result = previous - current;
+      result = x - y;
       break;
 
     case '*':
-      result = result = previous * current;
+      result = x * y;
       break;
 
     case '/':
-      result = result = previous / current;
+      result = x / y;
       break;
 
     default:
