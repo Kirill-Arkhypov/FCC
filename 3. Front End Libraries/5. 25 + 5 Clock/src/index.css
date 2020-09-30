@@ -1,6 +1,7 @@
 :root {
   --primary-color: #293241;
   --secondary-color: #ffffff;
+  --alert-color: #e63946;
 
   display: flex;
   justify-content: center;
@@ -16,21 +17,9 @@
 
 h1,
 h2,
-h3 {
+h3,
+p {
   margin: 0;
-}
-
-#container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  width: 400px;
-  padding: 15px;
-}
-
-#main-label {
-  font-size: 3.5rem;
-  margin-bottom: 30px;
 }
 
 button {
@@ -54,6 +43,23 @@ button:hover {
 
 button:active {
   transform: scale(0.95);
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 400px;
+  padding: 15px;
+}
+
+#main-label {
+  font-size: 3.5rem;
+  margin-bottom: 30px;
+}
+
+.alert {
+  color: var(--alert-color);
 }
 
 /*====================================================================*/
@@ -82,7 +88,6 @@ button:active {
 
 #control-buttons p {
   font-size: 2.2rem;
-  margin: 0;
 }
 
 /*====================================================================*/
@@ -99,7 +104,6 @@ button:active {
 
 #time-left {
   font-size: 6rem;
-  margin: 0;
   margin-bottom: 15px;
 }
 
