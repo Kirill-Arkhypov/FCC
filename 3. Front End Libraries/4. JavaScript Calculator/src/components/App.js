@@ -28,24 +28,31 @@ const App = () => {
 
   function equals() {
     if (!operator) return;
+
     setDisplayValue(
       compute(currentOperand || displayValue, previousOperand, operator)
     );
     setPreviousOperand(currentOperand || previousOperand);
     setDisplayExpression('');
     setCurrentOperand('');
+    setPreviousOperand('');
     setOperator('');
   }
 
   function backSpace() {
-    setDisplayValue(displayValue.slice(0, -1) || '0');
-    if (currentOperand) {
-      setCurrentOperand(currentOperand.slice(0, -1) || '0');
+    if (displayValue.length === 2 && displayValue.includes('-')) {
+      setDisplayValue('0');
+      if (currentOperand) setCurrentOperand('0');
+      return;
     }
+
+    setDisplayValue(displayValue.slice(0, -1) || '0');
+    if (currentOperand) setCurrentOperand(currentOperand.slice(0, -1) || '0');
   }
 
   function plusMinus() {
     if (displayValue === '0') return;
+
     displayValue.includes('-')
       ? setDisplayValue(displayValue.slice(1))
       : setDisplayValue('-' + displayValue);
@@ -73,7 +80,6 @@ const App = () => {
       setDisplayExpression(
         displayExpression + ' ' + currentOperand + ' ' + value
       );
-
       return;
     }
 
