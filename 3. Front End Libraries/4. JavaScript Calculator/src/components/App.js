@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import buttons from '../assets/buttons';
 import compute from '../assets/computationalLogic';
@@ -14,9 +14,11 @@ const App = () => {
   const [displayValue, setDisplayValue] = useState(currentOperand);
   const [displayExpression, setDisplayExpression] = useState('');
 
-  if (displayExpression.length > 28) {
-    setDisplayExpression('«' + displayExpression.slice(-27));
-  }
+  useEffect(() => {
+    if (displayExpression.length > 28) {
+      setDisplayExpression('«' + displayExpression.slice(-27));
+    }
+  }, [displayExpression]);
 
   function reset() {
     setCurrentOperand('0');
