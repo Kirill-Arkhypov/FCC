@@ -34,16 +34,6 @@ const App = () => {
     }
   });
 
-  function decrement(value, setValue) {
-    setValue(value - 1);
-    if (value <= 1) setValue(1);
-  }
-
-  function increment(value, setValue) {
-    setValue(value + 1);
-    if (value >= 60) setValue(60);
-  }
-
   function tick() {
     if (minutes === 0 && seconds === 1) {
       setSession(!session);
@@ -82,8 +72,8 @@ const App = () => {
           minutes={breakLength}
           decrementId={'break-decrement'}
           incrementId={'break-increment'}
-          decrement={() => decrement(breakLength, setBreakLength)}
-          increment={() => increment(breakLength, setBreakLength)}
+          decrement={() => setBreakLength(breakLength - 1)}
+          increment={() => setBreakLength(breakLength + 1)}
           pause={pause}
         />
         <TimeLengthController
@@ -93,8 +83,8 @@ const App = () => {
           minutes={sessionLength}
           decrementId={'session-decrement'}
           incrementId={'session-increment'}
-          decrement={() => decrement(sessionLength, setSessionLength)}
-          increment={() => increment(sessionLength, setSessionLength)}
+          decrement={() => setSessionLength(sessionLength - 1)}
+          increment={() => setSessionLength(sessionLength + 1)}
           pause={pause}
         />
       </div>

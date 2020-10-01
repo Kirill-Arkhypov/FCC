@@ -17,7 +17,7 @@ const TimeLengthController = ({
       <div id='control-buttons'>
         <button
           id={decrementId}
-          disabled={pause ? '' : 'disabled'}
+          disabled={minutes !== 1 && pause ? '' : 'disabled'}
           onClick={decrement}
         >
           -
@@ -25,7 +25,7 @@ const TimeLengthController = ({
         <p id={id}>{minutes}</p>
         <button
           id={incrementId}
-          disabled={pause ? '' : 'disabled'}
+          disabled={minutes !== 60 && pause ? '' : 'disabled'}
           onClick={increment}
         >
           +
