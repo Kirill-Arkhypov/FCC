@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import TimerLengthControl from './TimerLengthControl';
+import TimeLengthController from './TimeLengthController';
 import Timer from './Timer';
+
+const alarmSound =
+  'https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav';
 
 const App = () => {
   const [breakLength, setBreakLength] = useState(5);
@@ -42,16 +45,18 @@ const App = () => {
   }
 
   function tick() {
-    if (minutes === 0 && seconds === 1) audio.current.play();
+    if (minutes === 0 && seconds === 1) {
+      setSession(!session);
+      audio.current.play();
+      return;
+    }
+
     if (seconds === 0) {
-      if (minutes === 0) {
-        setSession(!session);
-        return;
-      }
       setMinutes(minutes - 1);
       setSeconds(59);
       return;
     }
+
     setSeconds(seconds - 1);
   }
 
@@ -70,7 +75,7 @@ const App = () => {
     <div id='container'>
       <h1 id='main-label'>25 + 5 Clock</h1>
       <div id='length-controllers'>
-        <TimerLengthControl
+        <TimeLengthController
           id={'break-length'}
           labelId={'break-label'}
           label={'Break Length'}
@@ -81,7 +86,7 @@ const App = () => {
           increment={() => increment(breakLength, setBreakLength)}
           pause={pause}
         />
-        <TimerLengthControl
+        <TimeLengthController
           id={'session-length'}
           labelId={'session-label'}
           label={'Session Length'}
@@ -101,12 +106,7 @@ const App = () => {
         startStop={() => setPause(!pause)}
         reset={() => reset()}
       />
-      <audio
-        id='beep'
-        preload='auto'
-        ref={audio}
-        src='https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav'
-      />
+      <audio id='beep' preload='auto' ref={audio} src={alarmSound} />
     </div>
   );
 };

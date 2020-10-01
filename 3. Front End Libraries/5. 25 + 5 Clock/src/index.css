@@ -35,14 +35,19 @@ button {
   transition: all 0.2s;
 }
 
-button:hover {
+button:enabled:hover {
   color: var(--primary-color);
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
 
-button:active {
+button:enabled:active {
   transform: scale(0.95);
+}
+
+button:disabled {
+  cursor: auto;
+  opacity: 0.2;
 }
 
 #container {
@@ -70,7 +75,7 @@ button:active {
   margin-bottom: 25px;
 }
 
-#timer-length-control {
+#timer-length-controller {
   width: 165px;
 }
 
