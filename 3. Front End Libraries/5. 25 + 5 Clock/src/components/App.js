@@ -19,9 +19,18 @@ const App = () => {
   const audio = useRef(null);
 
   useEffect(() => {
-    session ? setMinutes(sessionLength) : setMinutes(breakLength);
-    setSeconds(0);
-  }, [session, sessionLength, breakLength]);
+    if (session) {
+      setMinutes(sessionLength);
+      setSeconds(0);
+    }
+  }, [session, sessionLength]);
+
+  useEffect(() => {
+    if (!session) {
+      setMinutes(breakLength);
+      setSeconds(0);
+    }
+  }, [session, breakLength]);
 
   useEffect(() => {
     if (!pause) {
