@@ -1,0 +1,14 @@
+:root {
+  background-color: #1e1f26;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 500px;
+  height: 500px;
+}
