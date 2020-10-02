@@ -31,6 +31,20 @@ d3.json(
     .domain([0, d3.max(data, (d) => d[1])])
     .range([height - padding, padding]);
 
+  const xAxis = d3.axisBottom(xScale);
+  svg
+    .append('g')
+    .attr('id', 'x-axis')
+    .attr('transform', `translate(0, ${height - padding})`)
+    .call(xAxis);
+
+  const yAxis = d3.axisLeft(yScale);
+  svg
+    .append('g')
+    .attr('id', 'y-axis')
+    .attr('transform', `translate(${padding}, 0)`)
+    .call(yAxis);
+
   svg
     .selectAll('rect')
     .data(data)
@@ -59,18 +73,4 @@ d3.json(
     .on('mouseout', () => {
       tooltip.style('visibility', 'hidden');
     });
-
-  const xAxis = d3.axisBottom(xScale);
-  svg
-    .append('g')
-    .attr('id', 'x-axis')
-    .attr('transform', `translate(0, ${height - padding})`)
-    .call(xAxis);
-
-  const yAxis = d3.axisLeft(yScale);
-  svg
-    .append('g')
-    .attr('id', 'y-axis')
-    .attr('transform', `translate(${padding}, 0)`)
-    .call(yAxis);
 });
