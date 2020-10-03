@@ -1,6 +1,9 @@
 :root {
   --primary-color: #1e1f26;
   --secondary-color: #edf2f4;
+  --tertiary-color: #586ba4;
+  --alert-color: #d90429;
+  --shadow: 1px 1px 2px rgba(30, 31, 38, 0.7);
 
   display: flex;
   align-items: center;
@@ -26,4 +29,53 @@
   position: relative;
   background-color: var(--secondary-color);
   border-radius: 2px;
+}
+
+.dot {
+  fill: var(--tertiary-color);
+  stroke: var(--primary-color);
+  opacity: 0.9;
+}
+
+.alert {
+  fill: var(--alert-color);
+}
+
+#legend {
+  position: absolute;
+  top: 35px;
+  right: 40px;
+}
+
+#legend p {
+  position: relative;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+#legend p:before {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 1px;
+  left: -24px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--tertiary-color);
+  box-shadow: var(--shadow);
+}
+
+#legend p:last-child:before {
+  background-color: var(--alert-color);
+}
+
+#tooltip {
+  z-index: 10;
+  font-size: 0.9rem;
+  min-width: 160px;
+  padding: 8px;
+  color: var(--secondary-color);
+  background-color: rgba(30, 31, 38, 0.8);
+  box-shadow: var(--shadow);
+  border-radius: 3px;
 }
