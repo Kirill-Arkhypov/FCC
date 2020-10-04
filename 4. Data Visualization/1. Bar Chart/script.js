@@ -58,15 +58,11 @@ d3.json(
     .attr('data-gdp', (d) => d[1])
     .attr('class', 'bar')
     .on('mouseover', (e, d) => {
+      const x = +e.currentTarget.getAttribute('x');
+
       tooltip
         .attr('data-date', d[0])
-        .style('left', () => {
-          const x = +e.currentTarget.getAttribute('x');
-          if (x > 760) {
-            return x - 170 + 'px';
-          }
-          return x + 20 + 'px';
-        })
+        .style('left', () => (x > 760 ? x - 170 : x + 20) + 'px')
         .style('visibility', 'visible')
         .html(`<p>${d[0].slice(0, -3)}</p><p>$${d[1]} Billion</p>`);
     })
