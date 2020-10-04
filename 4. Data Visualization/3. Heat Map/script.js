@@ -115,7 +115,7 @@ d3.json(dataSet).then(({ baseTemperature, monthlyVariance }) => {
 
   // Data cells
 
-  const cellWidth = width / (monthlyVariance.length / 12);
+  const cellWidth = width / (data.length / 12);
   const cellHeight = (height - margin.top - margin.bottom) / months.length;
 
   const cell = svg.selectAll('rect').data(data).enter().append('rect');
@@ -140,20 +140,10 @@ d3.json(dataSet).then(({ baseTemperature, monthlyVariance }) => {
 
       tooltip
         .attr('data-year', d.year)
-        .style('top', () => {
-          if (y < 80) {
-            return y + 35 + 'px';
-          }
-          return y - 74 + 'px';
-        })
-        .style('left', () => {
-          if (x > 1250) {
-            return x - 155 + 'px';
-          } else if (x < 175) {
-            return x + 5 + 'px';
-          }
-          return x - 76 + 'px';
-        })
+        .style('top', () => (y < 80 ? y + 35 + 'px' : y - 74 + 'px'))
+        .style('left', () =>
+          x < 175 ? x + 5 + 'px' : x > 1250 ? x - 155 + 'px' : x - 76 + 'px'
+        )
         .style('visibility', 'visible')
         .html(tooltipTemplate(d.year, d.month, baseTemperature, d.variance));
     })
