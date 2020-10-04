@@ -1,6 +1,6 @@
-const width = 1350;
-const height = 500;
-const margin = { top: 5, right: 30, bottom: 100, left: 90 };
+const width = 1400;
+const height = 550;
+const margin = { top: 5, right: 30, bottom: 100, left: 80 };
 
 const dataSet =
   'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json';
@@ -140,7 +140,7 @@ d3.json(dataSet).then(({ baseTemperature, monthlyVariance }) => {
 
       tooltip
         .attr('data-year', d.year)
-        .style('top', () => (y < 80 ? y + 35 : y - 74) + 'px')
+        .style('top', () => (y < 80 ? y + 40 : y - 74) + 'px')
         .style('left', () => {
           return (x < 175 ? x + 5 : x > 1250 ? x - 155 : x - 76) + 'px';
         })
