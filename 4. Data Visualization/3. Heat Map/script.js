@@ -140,10 +140,10 @@ d3.json(dataSet).then(({ baseTemperature, monthlyVariance }) => {
 
       tooltip
         .attr('data-year', d.year)
-        .style('top', () => (y < 80 ? y + 35 + 'px' : y - 74 + 'px'))
-        .style('left', () =>
-          x < 175 ? x + 5 + 'px' : x > 1250 ? x - 155 + 'px' : x - 76 + 'px'
-        )
+        .style('top', () => (y < 80 ? y + 35 : y - 74) + 'px')
+        .style('left', () => {
+          return (x < 175 ? x + 5 : x > 1250 ? x - 155 : x - 76) + 'px';
+        })
         .style('visibility', 'visible')
         .html(tooltipTemplate(d.year, d.month, baseTemperature, d.variance));
     })
