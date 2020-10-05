@@ -1,6 +1,6 @@
 const width = 1400;
 const height = 550;
-const margin = { top: 5, right: 30, bottom: 100, left: 80 };
+const margin = { top: 5, right: 30, bottom: 100, left: 90 };
 
 const dataSet =
   'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json';
@@ -21,7 +21,8 @@ const months = [
 ];
 
 const colors = [
-  '#313695',
+  '#253f72',
+  '#305193',
   '#4575b4',
   '#74add1',
   '#abd9e9',
@@ -31,7 +32,8 @@ const colors = [
   '#f46d43',
   '#d73027',
   '#a50026',
-  '#7c001b',
+  '#87001b',
+  '#69001b',
 ];
 
 // Main canvas
@@ -115,8 +117,8 @@ d3.json(dataSet).then(({ baseTemperature, monthlyVariance }) => {
 
   // Data cells
 
-  const cellWidth = width / (data.length / 12);
-  const cellHeight = (height - margin.top - margin.bottom) / months.length;
+  const cellWidth = Math.round(width / (data.length / 12));
+  const cellHeight = yScale.bandwidth();
 
   const cell = svg.selectAll('rect').data(data).enter().append('rect');
 
@@ -176,20 +178,28 @@ d3.json(dataSet).then(({ baseTemperature, monthlyVariance }) => {
     .attr('y', 0)
     .attr('width', rectWidth)
     .attr('height', legendHeight)
-    .attr('fill', (d) => d);
+    .attr('fill', (color) => color);
 
   // Legend axis
 
   const legendScale = d3
     .scaleLinear()
     .domain(d3.extent(data, (d) => d.variance))
-    .range([0, legendWidth]);
+    .range([0, legendWidth])
+    .nice();
 
-  const legendAxis = d3.axisBottom(legendScale).tickSizeOuter(0);
+  const legendAxis = d3
+    .axisBottom(legendScale)
+    .tickSize(legendHeight + 8)
+    .tickSizeOuter(0);
+
+  legend.append('g').attr('id', 'legend-axis-top').call(legendAxis);
 
   legend
     .append('g')
-    .attr('id', 'legend-axis')
+    .attr('id', 'legend-axis-bottom')
+    .call(legendAxis)
     .attr('transform', `translate(0, ${legendHeight})`)
-    .call(legendAxis);
+    .selectAll('text, line')
+    .remove();
 });
