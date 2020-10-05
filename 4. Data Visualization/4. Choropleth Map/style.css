@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #1e1f26;
+  --secondary-color: #edf2f4;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#title,
+#description {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#root {
+  position: relative;
+  border: 2px solid var(--primary-color);
+}
