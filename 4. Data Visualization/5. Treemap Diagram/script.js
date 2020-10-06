@@ -40,7 +40,7 @@ const tooltip = d3
 function tooltipTemplate(category, name, value) {
   return `<p>${name}</p>
           <i>${category}</i>
-          <p>value: ${value.toString().slice(0, -6)}M</p>`;
+          <p>$${value.toString().slice(0, -6)}M</p>`;
 }
 
 // Fetching data
