@@ -75,7 +75,7 @@ function render([education, counties]) {
     .attr('data-fips', (d) => d.id)
     .attr('data-education', (d) => county(d).bachelorsOrHigher)
     .attr('class', 'county')
-    .on('mouseover', (e, d) => {
+    .on('mousemove', (e, d) => {
       const { state, area_name, bachelorsOrHigher } = county(d);
       const x = e.offsetX;
       const y = e.offsetY;
