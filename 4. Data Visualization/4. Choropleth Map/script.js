@@ -51,8 +51,7 @@ Promise.all(data).then(render);
 function render([education, counties]) {
   const county = (d) => education.filter((e) => e.fips === d.id)[0];
 
-  const min = d3.min(education, (d) => d.bachelorsOrHigher);
-  const max = d3.max(education, (d) => d.bachelorsOrHigher);
+  const [min, max] = d3.extent(education, (d) => d.bachelorsOrHigher);
   const step = (max - min) / colorScheme.length;
 
   // Colors scale
