@@ -19,7 +19,7 @@ const tooltip = d3
 d3.json(
   'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json'
 ).then(({ data }) => {
-  const barWidth = width / data.length;
+  const barWidth = Math.round(width / data.length);
 
   const xScale = d3
     .scaleTime()
