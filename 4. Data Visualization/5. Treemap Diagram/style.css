@@ -43,9 +43,10 @@
 
 #legend {
   position: absolute;
-  width: 120px;
-  height: 170px;
-  left: 230px;
+  top: 2px;
+  left: 1175px;
+  min-width: 120px;
+  min-height: 170px;
 }
 
 #legend text {
