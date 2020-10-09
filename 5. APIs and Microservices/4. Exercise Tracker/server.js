@@ -110,10 +110,10 @@ app.get('/api/exercise/log', (req, res) => {
       fromDate = fromDate.getTime();
       toDate = toDate.getTime();
 
-      responseObject.log = responseObject.log.filter((session) => {
-        let sessionDate = new Date(session.date).getTime();
+      responseObject.log = responseObject.log.filter((exercise) => {
+        const exerciseDate = new Date(exercise.date).getTime();
 
-        return sessionDate >= fromDate && sessionDate <= toDate;
+        return exerciseDate >= fromDate && exerciseDate <= toDate;
       });
     }
 
