@@ -9,25 +9,25 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    var result;
+    const result;
     
     return result;
   };
   
   this.getUnit = function(input) {
-    var result;
+    const result;
     
     return result;
   };
   
   this.getReturnUnit = function(initUnit) {
-    var result;
+    const result;
     
     return result;
   };
 
   this.spellOutUnit = function(unit) {
-    var result;
+    const result;
     
     return result;
   };
@@ -36,13 +36,13 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    var result;
+    const result;
     
     return result;
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
+    const result;
     
     return result;
   };
