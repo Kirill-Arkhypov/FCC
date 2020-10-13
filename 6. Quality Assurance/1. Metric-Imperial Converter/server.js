@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expect = require('chai').expect;
 const cors = require('cors');
+const helmet = require('helmet');
 
 const apiRoutes = require('./routes/api.js');
 const fccTestingRoutes = require('./routes/fcctesting.js');
@@ -17,6 +18,9 @@ app.use(cors({ origin: '*' })); //For FCC testing purposes only
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(helmet.noSniff());
+app.use(helmet.xssFilter());
 
 //Index page (static HTML)
 app.route('/').get((req, res) => {
@@ -34,9 +38,11 @@ app.use((req, res, next) => {
   res.status(404).type('text').send('Not Found');
 });
 
+const port = process.env.PORT || 3000;
+
 //Start our server and tests!
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Listening on port ' + process.env.PORT);
+app.listen(port, () => {
+  console.log('Listening on port ' + port);
   if (process.env.NODE_ENV === 'test') {
     console.log('Running Tests...');
     setTimeout(() => {
