@@ -37,7 +37,7 @@ function ConvertHandler() {
       if (x.length > 2) {
         return 'invalid number';
       }
-      return +(+x[0] / +x[1]).toPrecision(6);
+      return +(+x[0] / +x[1]).toFixed(5);
     }
 
     return +num;
@@ -155,7 +155,7 @@ function ConvertHandler() {
         return;
     }
 
-    return +result.toPrecision(6);
+    return +result.toFixed(5);
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
