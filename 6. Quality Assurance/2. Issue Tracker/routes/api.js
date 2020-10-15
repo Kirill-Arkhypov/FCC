@@ -66,7 +66,7 @@ module.exports = function (app) {
         !req.body.issue_text ||
         !req.body.created_by
       ) {
-        res.json('Required fields missing from request');
+        return res.json('Required fields missing from request');
       }
 
       newIssue.save((err, issue) => {
