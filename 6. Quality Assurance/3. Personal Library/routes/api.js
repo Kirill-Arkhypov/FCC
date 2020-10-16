@@ -48,9 +48,10 @@ module.exports = function (app) {
 
     .post((req, res) => {
       const title = req.body.title;
-      const newBook = new Book({
-        title,
-      });
+      if (!title) {
+        return res.json('title required');
+      }
+      const newBook = new Book({ title });
       newBook.save((err, book) => {
         if (err) {
           throw new Error(err);
@@ -71,13 +72,12 @@ module.exports = function (app) {
   app
     .route('/api/books/:id')
     .get((req, res) => {
-      const bookid = req.params.id;
-      Book.findOne({ _id: bookid }, (err, book) => {
-        if (err) {
-          throw new Error(err);
-        }
+      Book.findById(req.params.id, (err, book) => {
         if (!book) {
           return res.json('no book exists');
+        }
+        if (err) {
+          throw new Error(err);
         }
         return res.json({
           _id: book._id,
