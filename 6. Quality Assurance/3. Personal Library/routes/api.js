@@ -20,38 +20,106 @@ mongoose.connect(process.env.DB, {
   useFindAndModify: false,
 });
 
+const bookSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  comments: [String],
+});
+const Book = mongoose.model('Book', bookSchema);
+
 module.exports = function (app) {
   app
     .route('/api/books')
-    .get(function (req, res) {
-      //response will be array of book objects
-      //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
+    .get((req, res) => {
+      Book.find({}, (err, books) => {
+        if (err) {
+          throw new Error(err);
+        }
+        return res.json(
+          books.map((book) => {
+            return {
+              _id: book._id,
+              title: book.title,
+              commentcount: book.comments.length,
+            };
+          })
+        );
+      });
     })
 
-    .post(function (req, res) {
+    .post((req, res) => {
       const title = req.body.title;
-      //response will contain new book object including atleast _id and title
+      const newBook = new Book({
+        title,
+      });
+      newBook.save((err, book) => {
+        if (err) {
+          throw new Error(err);
+        }
+        res.json({ _id: book._id, title: book.title });
+      });
     })
 
-    .delete(function (req, res) {
-      //if successful response will be 'complete delete successful'
+    .delete((req, res) => {
+      Book.deleteMany({}, (err, issue) => {
+        if (err) {
+          throw new Error(err);
+        }
+        return res.json('complete delete successful');
+      });
     });
 
   app
     .route('/api/books/:id')
-    .get(function (req, res) {
+    .get((req, res) => {
       const bookid = req.params.id;
-      //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
+      Book.findOne({ _id: bookid }, (err, book) => {
+        if (err) {
+          throw new Error(err);
+        }
+        if (!book) {
+          return res.json('no book exists');
+        }
+        return res.json({
+          _id: book._id,
+          title: book.title,
+          comments: book.comments,
+        });
+      });
     })
 
-    .post(function (req, res) {
+    .post((req, res) => {
       const bookid = req.params.id;
       const comment = req.body.comment;
-      //json res format same as .get
+      Book.findByIdAndUpdate(
+        bookid,
+        { $push: { comments: comment } },
+        { new: true },
+        (err, book) => {
+          if (err) {
+            throw new Error(err);
+          }
+          if (!book) {
+            return res.json('no book exists');
+          }
+          return res.json({
+            _id: book._id,
+            title: book.title,
+            comments: book.comments,
+          });
+        }
+      );
     })
 
-    .delete(function (req, res) {
+    .delete((req, res) => {
       const bookid = req.params.id;
-      //if successful response will be 'delete successful'
+      Book.findByIdAndRemove(bookid, (err, book) => {
+        if (err) {
+          throw new Error(err);
+        }
+        if (!book) {
+          return res.json('no book exists');
+        }
+        return res.json('delete successful');
+      });
     });
 };
