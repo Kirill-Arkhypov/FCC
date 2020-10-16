@@ -1,5 +1,6 @@
 {
   "name": "sudoku-solver",
+  "author": "Kirill Arkhypov",
   "version": "1.0.0",
   "description": "Quality Assurance 4: Sudoku Solver",
   "main": "index.js",
