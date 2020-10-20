@@ -17,7 +17,7 @@ function fillSudoku(values, sudoku, errorDiv) {
       errorDiv.textContent = 'Error: Expected puzzle to be 81 characters long';
       return;
     }
-    if (!value.match(/[0-9.]/)) {
+    if (!value.match(/[1-9.]/)) {
       errorDiv.textContent = 'Error: Invalid input';
       return;
     }
@@ -30,7 +30,7 @@ function updateTextArea(cells, errorDiv) {
   let textString = '';
 
   cells.forEach((cell) => {
-    if (!cell.value.match(/[0-9]/)) {
+    if (!cell.value.match(/[1-9]/)) {
       if (cell.value === '') {
         textString = textString + '.';
         return;

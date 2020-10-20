@@ -48,7 +48,7 @@ suite('UnitTests', () => {
     // Invalid characters or numbers are not accepted
     // as valid input for the puzzle grid
     test('Invalid characters (anything other than "1-9") are not accepted', (done) => {
-      const input = ['!', 'a', '/', '+', '-', '0', '10', 0, '.'];
+      const input = ['!', 'a', '/', '+', '-', '0', 0, '.'];
 
       const textArea = document.getElementById('text-input');
       const sudokuCells = document.querySelectorAll('.sudoku-input');
