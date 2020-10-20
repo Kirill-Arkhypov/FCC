@@ -10,19 +10,53 @@ const error = document.getElementById('error-msg');
 
 const solver = new SudokuSolver();
 
-function fillSudoku(values) {
-  error.textContent = '';
+function fillSudoku(values, errorDiv) {
+  errorDiv.textContent = '';
   values.forEach((value, i) => {
     if (values.length !== 81) {
-      error.textContent = 'Error: Expected puzzle to be 81 characters long';
+      errorDiv.textContent = 'Error: Expected puzzle to be 81 characters long';
       return;
     }
     if (!value.match(/[0-9.]/)) {
-      error.textContent = 'Error: Invalid input';
+      errorDiv.textContent = 'Error: Invalid input';
       return;
     }
     sudokuCells[i].value = value === '.' ? '' : value;
   });
+}
+
+function updateTextArea(cells, errorDiv) {
+  errorDiv.textContent = '';
+  let textString = '';
+
+  cells.forEach((cell) => {
+    if (!cell.value.match(/[0-9]/)) {
+      if (cell.value === '') {
+        textString = textString + '.';
+        return;
+      }
+      textString = textString + '.';
+      errorDiv.textContent = 'Error: Invalid input';
+      return;
+    }
+    textString =
+      textString + (cell.value.toString() === '' ? '.' : cell.value.toString());
+  });
+
+  return textString;
+}
+
+function solve(puzzle, errorDiv) {
+  if (errorDiv.textContent === '') {
+    const result = solver.solve(puzzle);
+
+    if (result === 'No solution found') {
+      errorDiv.textContent = 'Error: ' + result;
+      return;
+    }
+
+    return result;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,52 +67,25 @@ document.addEventListener('DOMContentLoaded', () => {
       Math.floor(Math.random() * puzzlesAndSolutions.length)
     ][0];
 
-  fillSudoku(textArea.value.split(''));
+  fillSudoku(textArea.value.split(''), error);
 });
 
 textArea.addEventListener('input', (e) => {
-  fillSudoku(e.currentTarget.value.split(''));
+  fillSudoku(e.currentTarget.value.split(''), error);
 });
 
 sudokuGrid.addEventListener('input', () => {
-  let textString = '';
-  error.textContent = '';
-
-  sudokuCells.forEach((cell) => {
-    if (!cell.value.match(/[0-9]/)) {
-      if (cell.value === '') {
-        textString = textString + '.';
-        return;
-      }
-      textString = textString + '.';
-      error.textContent = 'Error: Invalid input';
-      return;
-    }
-    textString =
-      textString + (cell.value.toString() === '' ? '.' : cell.value.toString());
-  });
-
-  textArea.value = textString;
+  textArea.value = updateTextArea(sudokuCells, error);
 });
 
 solveButton.addEventListener('click', () => {
-  if (error.textContent === '') {
-    const result = solver.solve(textArea.value);
-
-    if (result === 'No solution found') {
-      error.textContent = 'Error: ' + result;
-      return;
-    }
-
-    textArea.value = result;
-    fillSudoku(result.split(''));
-  }
+  textArea.value = solve(textArea.value, error);
+  fillSudoku(textArea.value.split(''), error);
 });
 
 clearButton.addEventListener('click', () => {
-  error.textContent = '';
   textArea.value = '.'.repeat(81);
-  fillSudoku(textArea.value.split(''));
+  fillSudoku(textArea.value.split(''), error);
 });
 
 /* 
