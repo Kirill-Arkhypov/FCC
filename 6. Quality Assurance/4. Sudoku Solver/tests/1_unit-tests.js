@@ -11,6 +11,7 @@ const assert = chai.assert;
 
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
+
 let Solver;
 
 suite('UnitTests', () => {
@@ -30,7 +31,18 @@ suite('UnitTests', () => {
     test('Valid "1-9" characters', (done) => {
       const input = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-      // done();
+      const textArea = document.getElementById('text-input');
+      const sudokuCells = document.querySelectorAll('.sudoku-input');
+      const errorDiv = document.getElementById('error-msg');
+
+      textArea.value = '.'.repeat(81);
+
+      sudokuCells[0].value = input[Math.floor(Math.random() * input.length)];
+      textArea.value = Solver.updateTextArea(sudokuCells, errorDiv);
+
+      assert.equal(textArea.value.charAt(0), sudokuCells[0].value);
+
+      done();
     });
 
     // Invalid characters or numbers are not accepted
@@ -38,7 +50,19 @@ suite('UnitTests', () => {
     test('Invalid characters (anything other than "1-9") are not accepted', (done) => {
       const input = ['!', 'a', '/', '+', '-', '0', '10', 0, '.'];
 
-      // done();
+      const textArea = document.getElementById('text-input');
+      const sudokuCells = document.querySelectorAll('.sudoku-input');
+      const errorDiv = document.getElementById('error-msg');
+
+      textArea.value = '.'.repeat(81);
+
+      sudokuCells[0].value = input[Math.floor(Math.random() * input.length)];
+      textArea.value = Solver.updateTextArea(sudokuCells, errorDiv);
+
+      assert.equal(textArea.value.charAt(0), '.');
+      assert.equal(errorDiv.textContent, 'Error: Invalid input');
+
+      done();
     });
   });
 
@@ -47,7 +71,20 @@ suite('UnitTests', () => {
       const input =
         '..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..';
 
-      // done();
+      const textArea = document.getElementById('text-input');
+      const sudokuCells = document.querySelectorAll('.sudoku-input');
+      const errorDiv = document.getElementById('error-msg');
+
+      textArea.value = input;
+      Solver.fillSudoku(textArea.value.split(''), sudokuCells, errorDiv);
+      let testString = '';
+      sudokuCells.forEach((e) => {
+        testString = testString + (e.value === '' ? '.' : e.value);
+      });
+
+      assert.equal(textArea.value, testString);
+
+      done();
     });
 
     // Puzzles that are not 81 numbers/periods long show the message
@@ -57,10 +94,26 @@ suite('UnitTests', () => {
       const shortStr = '83.9.....6.62.71...9......1945....4.37.4.3..6..';
       const longStr =
         '..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6...';
-      const errorMsg = 'Error: Expected puzzle to be 81 characters long.';
+
+      const textArea = document.getElementById('text-input');
+      const sudokuCells = document.querySelectorAll('.sudoku-input');
       const errorDiv = document.getElementById('error-msg');
 
-      // done();
+      textArea.value = shortStr;
+      Solver.fillSudoku(textArea.value.split(''), sudokuCells, errorDiv);
+      assert.equal(
+        errorDiv.textContent,
+        'Error: Expected puzzle to be 81 characters long'
+      );
+
+      textArea.value = longStr;
+      Solver.fillSudoku(textArea.value.split(''), sudokuCells, errorDiv);
+      assert.equal(
+        errorDiv.textContent,
+        'Error: Expected puzzle to be 81 characters long'
+      );
+
+      done();
     });
   });
 
@@ -70,7 +123,20 @@ suite('UnitTests', () => {
       const input =
         '769235418851496372432178956174569283395842761628713549283657194516924837947381625';
 
-      // done();
+      const textArea = document.getElementById('text-input');
+      const sudokuCells = document.querySelectorAll('.sudoku-input');
+      const errorDiv = document.getElementById('error-msg');
+
+      textArea.value = input;
+      Solver.fillSudoku(textArea.value.split(''), sudokuCells, errorDiv);
+      let testString = '';
+      sudokuCells.forEach((e) => {
+        testString = testString + (e.value === '' ? '.' : e.value);
+      });
+
+      assert.equal(textArea.value, testString);
+
+      done();
     });
 
     // Invalid complete puzzles fail
@@ -78,7 +144,20 @@ suite('UnitTests', () => {
       const input =
         '779235418851496372432178956174569283395842761628713549283657194516924837947381625';
 
-      // done();
+      const textArea = document.getElementById('text-input');
+      const sudokuCells = document.querySelectorAll('.sudoku-input');
+      const errorDiv = document.getElementById('error-msg');
+
+      textArea.value = input;
+      Solver.fillSudoku(textArea.value.split(''), sudokuCells, errorDiv);
+      let testString = '';
+      sudokuCells.forEach((e) => {
+        testString = testString + (e.value === '' ? '.' : e.value);
+      });
+
+      assert.equal(textArea.value, testString);
+
+      done();
     });
   });
 
@@ -88,7 +167,14 @@ suite('UnitTests', () => {
       const input =
         '..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..';
 
-      // done();
+      const errorDiv = document.getElementById('error-msg');
+
+      assert.equal(
+        Solver.solve(input, errorDiv),
+        '769235418851496372432178956174569283395842761628713549283657194516924837947381625'
+      );
+
+      done();
     });
   });
 });

@@ -10,7 +10,7 @@ const error = document.getElementById('error-msg');
 
 const solver = new SudokuSolver();
 
-function fillSudoku(values, errorDiv) {
+function fillSudoku(values, sudoku, errorDiv) {
   errorDiv.textContent = '';
   values.forEach((value, i) => {
     if (values.length !== 81) {
@@ -21,7 +21,7 @@ function fillSudoku(values, errorDiv) {
       errorDiv.textContent = 'Error: Invalid input';
       return;
     }
-    sudokuCells[i].value = value === '.' ? '' : value;
+    sudoku[i].value = value === '.' ? '' : value;
   });
 }
 
@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
       Math.floor(Math.random() * puzzlesAndSolutions.length)
     ][0];
 
-  fillSudoku(textArea.value.split(''), error);
+  fillSudoku(textArea.value.split(''), sudokuCells, error);
 });
 
 textArea.addEventListener('input', (e) => {
-  fillSudoku(e.currentTarget.value.split(''), error);
+  fillSudoku(e.currentTarget.value.split(''), sudokuCells, error);
 });
 
 sudokuGrid.addEventListener('input', () => {
@@ -80,12 +80,12 @@ sudokuGrid.addEventListener('input', () => {
 
 solveButton.addEventListener('click', () => {
   textArea.value = solve(textArea.value, error);
-  fillSudoku(textArea.value.split(''), error);
+  fillSudoku(textArea.value.split(''), sudokuCells, error);
 });
 
 clearButton.addEventListener('click', () => {
   textArea.value = '.'.repeat(81);
-  fillSudoku(textArea.value.split(''), error);
+  fillSudoku(textArea.value.split(''), sudokuCells, error);
 });
 
 /* 
@@ -94,5 +94,5 @@ clearButton.addEventListener('click', () => {
   the client side
 */
 try {
-  module.exports = {};
+  module.exports = { fillSudoku, updateTextArea, solve };
 } catch (e) {}
