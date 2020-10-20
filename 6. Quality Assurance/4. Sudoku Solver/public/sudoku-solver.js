@@ -1,9 +1,14 @@
 // import { puzzlesAndSolutions } from './puzzle-strings.js';
+import SudokuSolver from './solver-algorithm.js';
 
 const textArea = document.getElementById('text-input');
 const sudokuGrid = document.querySelector('.grid');
 const sudokuCells = document.querySelectorAll('.sudoku-input');
+const solveButton = document.getElementById('solve-button');
+const clearButton = document.getElementById('clear-button');
 const error = document.getElementById('error-msg');
+
+const solver = new SudokuSolver();
 
 function fillSudoku(values) {
   error.textContent = '';
@@ -51,6 +56,26 @@ sudokuGrid.addEventListener('input', () => {
   });
 
   textArea.value = textString;
+});
+
+solveButton.addEventListener('click', () => {
+  if (error.textContent === '') {
+    const result = solver.solve(textArea.value);
+
+    if (result === 'No solution found') {
+      error.textContent = 'Error: ' + result;
+      return;
+    }
+
+    textArea.value = result;
+    fillSudoku(result.split(''));
+  }
+});
+
+clearButton.addEventListener('click', () => {
+  error.textContent = '';
+  textArea.value = '.'.repeat(81);
+  fillSudoku(textArea.value.split(''));
 });
 
 /* 
