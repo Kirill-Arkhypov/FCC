@@ -46,6 +46,11 @@ function updateTextArea(cells, errorDiv) {
   return textString;
 }
 
+function clear(area, sudoku, err) {
+  area.value = '.'.repeat(81);
+  fillSudoku(area.value.split(''), sudoku, err);
+}
+
 function solve(puzzle, errorDiv) {
   if (errorDiv.textContent === '') {
     const result = solver.solve(puzzle);
@@ -84,8 +89,7 @@ solveButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', () => {
-  textArea.value = '.'.repeat(81);
-  fillSudoku(textArea.value.split(''), sudokuCells, error);
+  clear(textArea, sudokuCells, error);
 });
 
 /* 
@@ -94,5 +98,5 @@ clearButton.addEventListener('click', () => {
   the client side
 */
 try {
-  module.exports = { fillSudoku, updateTextArea, solve };
+  module.exports = { fillSudoku, updateTextArea, solve, clear };
 } catch (e) {}
