@@ -13,9 +13,11 @@ const errorDiv = document.getElementById('error-msg');
 function toTerms(input, terms) {
   let result = input;
   Object.keys(terms).forEach((e) => {
-    const regexp = `\\b(${e})(\\B)?\\b`;
-    const re = new RegExp(regexp, 'i');
-    result = result.replace(re, `<span class='highlight'>${terms[e]}</span>`);
+    const regexp = `(?<!-)\\b${e}\\b(?!-)`;
+    result = result.replace(
+      new RegExp(regexp, 'i'),
+      `<span class='highlight'>${terms[e]}</span>`
+    );
   });
   return result;
 }
@@ -23,13 +25,31 @@ function toTerms(input, terms) {
 function fromTerms(input, terms) {
   let result = input;
   Object.keys(terms).forEach((e) => {
-    const regexp = `\\b(${terms[e]})(\\B)?\\b`;
-    const re = new RegExp(regexp, 'i');
+    const regexp = `(?<!-)\\b${terms[e]}\\b(?!-)`;
     result = result.replace(
-      new RegExp(re, 'i'),
+      new RegExp(regexp, 'i'),
       `<span class='highlight'>${e}</span>`
     );
   });
+  return result;
+}
+
+function convertTitles(input, mode, titles) {
+  let result = input;
+  if (mode === 'american-to-british') {
+    Object.keys(titles).forEach((e) => {
+      result = result.replace(e, `<span class='highlight'>${titles[e]}</span>`);
+    });
+  } else {
+    Object.keys(titles).forEach((e) => {
+      const regexp = `\\b(${titles[e]})\\b`;
+      result = result.replace(
+        new RegExp(regexp),
+        `<span class='highlight'>${e}</span>`
+      );
+    });
+  }
+
   return result;
 }
 
@@ -68,13 +88,12 @@ function translate(input, mode, output, err) {
   if (mode === 'american-to-british') {
     result = toTerms(result, americanOnly);
     result = toTerms(result, americanToBritishSpelling);
-    result = toTerms(result, americanToBritishTitles);
   } else {
     result = toTerms(result, britishOnly);
     result = fromTerms(result, americanToBritishSpelling);
-    result = fromTerms(result, americanToBritishTitles);
   }
 
+  result = convertTitles(result, mode, americanToBritishTitles);
   result = convertTime(result, mode);
 
   output.innerHTML = result;
@@ -85,9 +104,10 @@ function translate(input, mode, output, err) {
   }
 }
 
-function clear(input, output) {
+function clear(input, output, err) {
   input.value = '';
   output.textContent = '';
+  err.textContent = '';
 }
 
 translateButton.addEventListener('click', () => {
@@ -95,7 +115,7 @@ translateButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', () => {
-  clear(textArea, translatedDiv);
+  clear(textArea, translatedDiv, errorDiv);
 });
 
 /* 
