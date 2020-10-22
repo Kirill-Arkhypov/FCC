@@ -24,7 +24,21 @@ suite('Functional Tests', () => {
       `<span class="highlight">...</span>` tags when the "Translate" button is pressed.
     */
     test('Translation appended to the `translated-sentence` `div`', (done) => {
-      // done();
+      const input = 'Mangoes are my favorite fruit.';
+      const output =
+        'Mangoes are my <span class="highlight">favourite</span> fruit.';
+
+      const translatedDiv = document.getElementById('translated-sentence');
+      const errorDiv = document.getElementById('error-msg');
+      Translator.translate(
+        input,
+        'american-to-british',
+        translatedDiv,
+        errorDiv
+      );
+
+      assert.equal(translatedDiv.innerHTML, output);
+      done();
     });
 
     /* 
@@ -33,7 +47,20 @@ suite('Functional Tests', () => {
       `translated-sentence` `div` when the "Translate" button is pressed.
     */
     test("'Everything looks good to me!' message appended to the `translated-sentence` `div`", (done) => {
-      // done();
+      const input = 'Mangoes are my favourite fruit.';
+      const output = 'Everything looks good to me!';
+
+      const translatedDiv = document.getElementById('translated-sentence');
+      const errorDiv = document.getElementById('error-msg');
+      Translator.translate(
+        input,
+        'american-to-british',
+        translatedDiv,
+        errorDiv
+      );
+
+      assert.equal(translatedDiv.innerHTML, output);
+      done();
     });
 
     /* 
@@ -42,7 +69,21 @@ suite('Functional Tests', () => {
       the `error-msg` `div`.
     */
     test("'Error: No text to translate.' message appended to the `translated-sentence` `div`", (done) => {
-      // done();
+      const input = '';
+
+      const translatedDiv = document.getElementById('translated-sentence');
+      const errorDiv = document.getElementById('error-msg');
+
+      Translator.translate(
+        input,
+        'american-to-british',
+        translatedDiv,
+        errorDiv
+      );
+
+      assert.equal(errorDiv.innerText, 'Error: No text to translate.');
+
+      done();
     });
   });
 
@@ -52,7 +93,21 @@ suite('Functional Tests', () => {
       `divs` are cleared when the "Clear" button is pressed.
     */
     test('Text area, `translated-sentence`, and `error-msg` are cleared', (done) => {
-      // done();
+      const textArea = document.getElementById('text-input');
+      const translatedDiv = document.getElementById('translated-sentence');
+      const errorDiv = document.getElementById('error-msg');
+
+      textArea.textContent = 'Mangoes are my favorite fruit.';
+      translatedDiv.textContent = 'Mangoes are my favoruite fruit.';
+      errorDiv.textContent = 'some error text';
+
+      Translator.clear(textArea, translatedDiv, errorDiv);
+
+      assert.equal(textArea.value, '');
+      assert.equal(translatedDiv.textContent, '');
+      assert.equal(errorDiv.textContent, '');
+
+      done();
     });
   });
 });
