@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expect = require('chai').expect;
 const cors = require('cors');
+const helmet = require('helmet');
 
 const apiRoutes = require('./routes/api.js');
 const fccTestingRoutes = require('./routes/fcctesting.js');
@@ -12,6 +13,17 @@ const runner = require('./test-runner');
 require('dotenv').config();
 
 const app = express();
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+    },
+  })
+);
+app.enable('trust proxy');
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
