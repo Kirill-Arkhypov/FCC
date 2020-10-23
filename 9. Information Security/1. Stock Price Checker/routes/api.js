@@ -81,12 +81,9 @@ module.exports = (app) => {
         await fetchStock(stock[1]),
       ]).then(async (result) => {
         const checkLike1 = await checkLikes(result[0], like, req);
-        if (checkLike1) {
-          return res.json(checkLike1);
-        }
         const checkLike2 = await checkLikes(result[1], like, req);
-        if (checkLike2) {
-          return res.json(checkLike2);
+        if (checkLike1 || checkLike2) {
+          return res.json(checkLike1 || checkLike2);
         }
 
         const stock1 = await getStock(result[0], like, req);
