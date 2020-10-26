@@ -97,6 +97,9 @@ module.exports = function (app) {
           const result = threads.map((thread) => ({
             ...thread,
             replies: thread.replies
+              .map((e) => {
+                return { created_on: e.created_on, _id: e._id, text: e.text };
+              })
               .sort((a, b) => b.created_on - a.created_on)
               .slice(0, 3),
             replycount: thread.replies.length,
