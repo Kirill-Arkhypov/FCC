@@ -21,8 +21,6 @@ const threadValidator = (threadId, err, thread, res, replyId) => {
     return res.json('invalid thread id');
   }
 
-  // console.log( replyId);
-
   if (replyId) {
     if (!mongoose.Types.ObjectId.isValid(replyId)) {
       return res.json('invalid reply id');
