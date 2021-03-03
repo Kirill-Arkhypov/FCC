@@ -11,7 +11,7 @@ class App extends React.Component {
 
   fetchQuote = async () => {
     const quote = await fetch(
-      'https://staging.quotable.io/random'
+      'https://api.quotable.io/random'
     ).then((res) => res.json());
 
     this.setState({
